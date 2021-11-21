@@ -39,7 +39,7 @@ public class RepasseController {
 			Pageable pageable)
 	{
 		Page<Repasse> result =  repasseRepository.searchMunicipio(municipio, esferaGoverno, pageable);
-		return ResponseEntity.ok(result);
+		return (ResponseEntity<Page<Repasse>>) ResponseEntity.ok(result);
 	}
 
 
