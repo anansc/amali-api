@@ -68,10 +68,8 @@
 		      <artifactId>heroku-maven-plugin</artifactId>
 		      <version>3.0.4</version>
 		      <configuration>
-		        <appName>${heroku.api-amali}</appName>
-		        <processTypes>
-		          <web>java -Dserver.port=$PORT $JAVA_OPTS -jar target/amali-api-1.0.jar</web>
-		        </processTypes>
+		        <appName>api-amali</appName>
+		        
 		      </configuration> 
 		    </plugin>
 		</plugins>
