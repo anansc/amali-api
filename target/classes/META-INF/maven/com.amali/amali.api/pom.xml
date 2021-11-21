@@ -70,9 +70,9 @@
 		      <configuration>
 		        <appName>${heroku.api-amali}</appName>
 		        <processTypes>
-		          <web>java $JAVA_OPTS -cp target/classes:target/dependency/* com.amali</web>
+		          <web>java -Dserver.port=$PORT $JAVA_OPTS -jar target/amali-api-1.0.jar</web>
 		        </processTypes>
-		      </configuration>
+		      </configuration> 
 		    </plugin>
 		</plugins>
 	</build>
