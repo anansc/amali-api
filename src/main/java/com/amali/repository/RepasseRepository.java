@@ -1,6 +1,8 @@
 package com.amali.repository;
 
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,6 +17,7 @@ public interface RepasseRepository extends JpaRepository<Repasse, Long> {
 
 	/*@Query("SELECT obj FROM Repasse obj WHERE LOWER(obj.municipio) LIKE LOWER(:municipio) AND LOWER(obj.esferaGoverno) LIKE LOWER(:esferaGoverno)")
 	Page<Repasse> searchMunicipio(@Param("municipio") String municipio,
-			@Param("esferaGoverno") String esferaGoverno, Pageable pageable);*/
+			@Param("esferaGoverno") String esferaGoverno, Pageable pageable);
+	*/
 
 }

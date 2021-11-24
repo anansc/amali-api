@@ -9,6 +9,7 @@ import com.amali.repository.RepasseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,8 +32,8 @@ public class RepasseController {
 	    Page<Repasse> result = repasseRepository.findAll(pageable);
 	    return ResponseEntity.ok(result);
 	}
-	
-/*	@GetMapping(value = "/lchart")
+	/*
+	@GetMapping(value = "/lchart")
 	public ResponseEntity<Page<Repasse>> searchByMunicipio(
 			@RequestParam(defaultValue = "") String municipio,
 			@RequestParam(defaultValue = "") String esferaGoverno,
@@ -41,6 +42,32 @@ public class RepasseController {
 		Page<Repasse> result =  repasseRepository.searchMunicipio(municipio, esferaGoverno, pageable);
 		return (ResponseEntity<Page<Repasse>>) ResponseEntity.ok(result);
 	}
-*/
+	*/
+	
+	@GetMapping(value ="/pMunicipio")
+	public ResponseEntity<List<Repasse>> findOrderByNomeMunicipio() {
+	    List<Repasse> result = repasseRepository.findAll(Sort.by(Sort.Direction.ASC,"municipio"));
+	    return ResponseEntity.ok(result);
+	}
+	
+	@GetMapping(value ="/pAno")
+	public ResponseEntity<List<Repasse>> findOrderByAno() {
+	    List<Repasse> result = repasseRepository.findAll(Sort.by(Sort.Direction.ASC,"ano"));
+	    return ResponseEntity.ok(result);
+	}
+	
+	@GetMapping(value ="/pModalidadeEnsino")
+	public ResponseEntity<List<Repasse>> findOrderByModalideEnsino() {
+	    List<Repasse> result = repasseRepository.findAll(Sort.by(Sort.Direction.ASC,"modalidadeEnsino"));
+	    return ResponseEntity.ok(result);
+	}
+	
+	@GetMapping(value ="/pValorTotalEscolas")
+	public ResponseEntity<List<Repasse>> findOrderByValorTotalEscolas() {
+	    List<Repasse> result = repasseRepository.findAll(Sort.by(Sort.Direction.ASC,"valorTotalEscolas"));
+	    return ResponseEntity.ok(result);
+	}
+	
+
 
 }
