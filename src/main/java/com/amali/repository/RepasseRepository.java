@@ -13,8 +13,8 @@ import com.amali.model.Repasse;
 @Repository
 public interface RepasseRepository extends JpaRepository<Repasse, Long> {
 
-	@Query("SELECT obj FROM Repasse obj WHERE LOWER(obj.municipio) LIKE LOWER(:municipio) AND LOWER(obj.esferaGoverno) LIKE LOWER(:esferaGoverno)")
+	/*@Query("SELECT obj FROM Repasse obj WHERE LOWER(obj.municipio) LIKE LOWER(:municipio) AND LOWER(obj.esferaGoverno) LIKE LOWER(:esferaGoverno)")
 	Page<Repasse> searchMunicipio(@Param("municipio") String municipio,
-			@Param("esferaGoverno") String esferaGoverno, Pageable pageable);
+			@Param("esferaGoverno") String esferaGoverno, Pageable pageable);*/
 
 }

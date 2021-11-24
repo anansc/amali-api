@@ -32,7 +32,7 @@ public class RepasseController {
 	    return ResponseEntity.ok(result);
 	}
 	
-	@GetMapping(value = "/lchart")
+/*	@GetMapping(value = "/lchart")
 	public ResponseEntity<Page<Repasse>> searchByMunicipio(
 			@RequestParam(defaultValue = "") String municipio,
 			@RequestParam(defaultValue = "") String esferaGoverno,
@@ -41,6 +41,6 @@ public class RepasseController {
 		Page<Repasse> result =  repasseRepository.searchMunicipio(municipio, esferaGoverno, pageable);
 		return (ResponseEntity<Page<Repasse>>) ResponseEntity.ok(result);
 	}
-
+*/
 
 }
