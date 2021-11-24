@@ -45,29 +45,47 @@ public class RepasseController {
 	*/
 	
 	@GetMapping(value ="/pMunicipio")
-	public ResponseEntity<List<Repasse>> findOrderByNomeMunicipio() {
-	    List<Repasse> result = repasseRepository.findAll(Sort.by(Sort.Direction.ASC,"municipio"));
+	public ResponseEntity<List<Repasse>> findOrderByMunicipioEsfera(
+			@RequestParam(defaultValue = "") String municipio,
+			@RequestParam(defaultValue = "") String esferaGoverno,
+			Sort sort
+			) {
+	    List<Repasse> result = repasseRepository.searchMunicipioEsfera(municipio, esferaGoverno,(Sort.by(Sort.Direction.ASC,"municipio")));
+	    return ResponseEntity.ok(result);
+	}
+	@GetMapping(value ="/lchart/municipio")
+	public ResponseEntity<List<Repasse>> findOrderByNomeMunicipio(
+			@RequestParam(defaultValue = "") String municipio,
+			Sort sort
+			) {
+	    List<Repasse> result = repasseRepository.searchMunicipio(municipio,(Sort.by(Sort.Direction.ASC,"municipio")));
 	    return ResponseEntity.ok(result);
 	}
 	
-	@GetMapping(value ="/pAno")
-	public ResponseEntity<List<Repasse>> findOrderByAno() {
-	    List<Repasse> result = repasseRepository.findAll(Sort.by(Sort.Direction.ASC,"ano"));
+	@GetMapping(value ="/lchart/ano")
+	public ResponseEntity<List<Repasse>> findOrderByAno(
+			@RequestParam(defaultValue = "") String ano,
+			Sort sort) {
+	    List<Repasse> result = repasseRepository.searchAno(ano,(Sort.by(Sort.Direction.ASC,"ano")));
 	    return ResponseEntity.ok(result);
 	}
 	
-	@GetMapping(value ="/pModalidadeEnsino")
-	public ResponseEntity<List<Repasse>> findOrderByModalideEnsino() {
-	    List<Repasse> result = repasseRepository.findAll(Sort.by(Sort.Direction.ASC,"modalidadeEnsino"));
-	    return ResponseEntity.ok(result);
-	}
-	
-	@GetMapping(value ="/pValorTotalEscolas")
-	public ResponseEntity<List<Repasse>> findOrderByValorTotalEscolas() {
-	    List<Repasse> result = repasseRepository.findAll(Sort.by(Sort.Direction.ASC,"valorTotalEscolas"));
+	@GetMapping(value ="/lchart/modal")
+	public ResponseEntity<List<Repasse>> findOrderByModalidade(
+			@RequestParam(defaultValue = "") String modalidadeEnsino,
+			Sort sort){
+		List<Repasse> result = repasseRepository.searchModal(modalidadeEnsino,(Sort.by(Sort.Direction.ASC,"modalidadeEnsino")));
 	    return ResponseEntity.ok(result);
 	}
 	
 
+	@GetMapping(value ="/lchart/esfera")
+	public ResponseEntity<List<Repasse>> findOrderByEsfera(
+			@RequestParam(defaultValue = "") String esferaGoverno,
+			Sort sort){
+		List<Repasse> result = repasseRepository.searchEsfera(esferaGoverno,(Sort.by(Sort.Direction.ASC,"esferaGoverno")));
+	    return ResponseEntity.ok(result);
+	}
+	
 
 }
