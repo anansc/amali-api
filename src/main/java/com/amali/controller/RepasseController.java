@@ -44,6 +44,16 @@ public class RepasseController {
 	}
 	*/
 	
+	@GetMapping(value ="/pModalidade")
+	public ResponseEntity<List<Repasse>> findOrderByMunicipioEsferaModalidade(
+			@RequestParam(defaultValue = "") String municipio,
+			@RequestParam(defaultValue = "") String esferaGoverno,
+			@RequestParam(defaultValue = "") String modalidadeEnsino,
+			Sort sort
+			) {
+	    List<Repasse> result = repasseRepository.searchMunicipioEsferaModalidade(municipio, esferaGoverno,modalidadeEnsino, (Sort.by(Sort.Direction.ASC,"municipio")));
+	    return ResponseEntity.ok(result);
+	}
 	@GetMapping(value ="/pMunicipio")
 	public ResponseEntity<List<Repasse>> findOrderByMunicipioEsfera(
 			@RequestParam(defaultValue = "") String municipio,
