@@ -4,18 +4,18 @@ import java.util.List;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.amali.model.Alunos;
-import com.amali.model.Repasse;
 import com.amali.repository.AlunosRepository;
-import com.amali.repository.RepasseRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping("/alunos")
@@ -36,15 +36,15 @@ public class AlunosController {
 	    Page<Alunos> result = alunosRepository.findAll(pageable);
 	    return ResponseEntity.ok(result);
 	}
-	
-	/*@Autowired
-	private AlunosRepository alunosRepository;
-	
-	@GetMapping
-	public List<Alunos> listar() {
-		return alunosRepository.findAll();
+	@GetMapping(value ="/pMunicipio")
+	public ResponseEntity<List<Alunos>> findOrderByMunicipioEsfera(
+			@RequestParam(defaultValue = "") String municipio,
+			@RequestParam(defaultValue = "") String esferaGoverno,
+			Sort sort
+			) {
+	    List<Alunos> result = alunosRepository.searchMunicipioEsfera(municipio, esferaGoverno,(Sort.by(Sort.Direction.ASC,"municipio")));
+	    return ResponseEntity.ok(result);
 	}
-	*/
 	@PostMapping
 	public Alunos adicionar (@RequestBody Alunos alunos) {
 		return alunosRepository.save(alunos);
