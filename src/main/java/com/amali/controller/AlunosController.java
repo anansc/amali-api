@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.amali.model.Alunos;
+import com.amali.model.Repasse;
 import com.amali.repository.AlunosRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,19 @@ public class AlunosController {
 	    List<Alunos> result = alunosRepository.searchMunicipioEsfera(municipio, esferaGoverno,(Sort.by(Sort.Direction.ASC,"municipio")));
 	    return ResponseEntity.ok(result);
 	}
+	@GetMapping(value ="/pModalidade")
+	public ResponseEntity<List<Alunos>> findOrderByMunicipioEsferaModalidade(
+			@RequestParam(defaultValue = "") String municipio,
+			@RequestParam(defaultValue = "") String esferaGoverno,
+			@RequestParam(defaultValue = "") String etapaEnsino,
+			Sort sort
+			) {
+	    List<Alunos> result = alunosRepository.searchMunicipioEsferaModalidade(municipio, esferaGoverno,etapaEnsino, (Sort.by(Sort.Direction.ASC,"municipio")));
+	    return ResponseEntity.ok(result);
+	}
+	
+	
+	
 	@PostMapping
 	public Alunos adicionar (@RequestBody Alunos alunos) {
 		return alunosRepository.save(alunos);
