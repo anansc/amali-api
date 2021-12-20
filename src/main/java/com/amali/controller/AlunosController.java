@@ -4,7 +4,6 @@ import java.util.List;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.amali.model.Alunos;
-import com.amali.model.Repasse;
 import com.amali.repository.AlunosRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
