@@ -19,32 +19,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/escolas")
 
 public class EscolasController {
-	
+
 	@Autowired
 	private EscolasRepository escolasRepository;
-	
+
 	@GetMapping
 	public ResponseEntity<List<Escolas>> findAll() {
-	    List<Escolas> result = escolasRepository.findAll();
-	    return ResponseEntity.ok(result);
+		List<Escolas> result = escolasRepository.findAll();
+		return ResponseEntity.ok(result);
 	}
-	
-	@GetMapping(value ="/page")
+
+	@GetMapping(value = "/page")
 	public ResponseEntity<Page<Escolas>> findAll(Pageable pageable) {
-	    Page<Escolas> result = escolasRepository.findAll(pageable);
-	    return ResponseEntity.ok(result);
+		Page<Escolas> result = escolasRepository.findAll(pageable);
+		return ResponseEntity.ok(result);
 	}
-	
-	/*@Autowired
-	private EscolasRepository escolasRepository;
-	
-	@GetMapping
-	public List<Escolas> listar() {
-		return escolasRepository.findAll();
-	}
-	*/
+
 	@PostMapping
-	public Escolas adicionar (@RequestBody Escolas escolas) {
+	public Escolas adicionar(@RequestBody Escolas escolas) {
 		return escolasRepository.save(escolas);
 	}
 

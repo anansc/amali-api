@@ -21,45 +21,46 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/alunos")
 
 public class AlunosController {
-	
+	Sort byMunicipio = Sort.by(Sort.Direction.ASC, "municipio");
+
 	@Autowired
 	private AlunosRepository alunosRepository;
-	
+
 	@GetMapping
 	public ResponseEntity<List<Alunos>> findAll() {
-	    List<Alunos> result = alunosRepository.findAll();
-	    return ResponseEntity.ok(result);
+		List<Alunos> result = alunosRepository.findAll();
+		return ResponseEntity.ok(result);
 	}
-	
-	@GetMapping(value ="/page")
+
+	@GetMapping(value = "/page")
 	public ResponseEntity<Page<Alunos>> findAll(Pageable pageable) {
-	    Page<Alunos> result = alunosRepository.findAll(pageable);
-	    return ResponseEntity.ok(result);
+		Page<Alunos> result = alunosRepository.findAll(pageable);
+		return ResponseEntity.ok(result);
 	}
-	@GetMapping(value ="/pMunicipio")
+
+	@GetMapping(value = "/pMunicipio")
 	public ResponseEntity<List<Alunos>> findOrderByMunicipioEsfera(
 			@RequestParam(defaultValue = "") String municipio,
 			@RequestParam(defaultValue = "") String esferaGoverno,
-			Sort sort
-			) {
-	    List<Alunos> result = alunosRepository.searchMunicipioEsfera(municipio, esferaGoverno,(Sort.by(Sort.Direction.ASC,"municipio")));
-	    return ResponseEntity.ok(result);
+			Sort sort) {
+		List<Alunos> result = alunosRepository.searchMunicipioEsfera(municipio, esferaGoverno,
+				byMunicipio);
+		return ResponseEntity.ok(result);
 	}
-	@GetMapping(value ="/pModalidade")
+
+	@GetMapping(value = "/pModalidade")
 	public ResponseEntity<List<Alunos>> findOrderByMunicipioEsferaModalidade(
 			@RequestParam(defaultValue = "") String municipio,
 			@RequestParam(defaultValue = "") String esferaGoverno,
 			@RequestParam(defaultValue = "") String etapaEnsino,
-			Sort sort
-			) {
-	    List<Alunos> result = alunosRepository.searchMunicipioEsferaModalidade(municipio, esferaGoverno,etapaEnsino, (Sort.by(Sort.Direction.ASC,"municipio")));
-	    return ResponseEntity.ok(result);
+			Sort sort) {
+		List<Alunos> result = alunosRepository.searchMunicipioEsferaModalidade(municipio, esferaGoverno, etapaEnsino,
+				byMunicipio);
+		return ResponseEntity.ok(result);
 	}
-	
-	
-	
+
 	@PostMapping
-	public Alunos adicionar (@RequestBody Alunos alunos) {
+	public Alunos adicionar(@RequestBody Alunos alunos) {
 		return alunosRepository.save(alunos);
 	}
 

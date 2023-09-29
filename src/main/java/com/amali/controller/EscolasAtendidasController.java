@@ -21,30 +21,27 @@ public class EscolasAtendidasController {
 
 	@Autowired
 	private EscolasAtendidasRepository escolasAtendidasRepository;
-	
+
 	@GetMapping
 	public ResponseEntity<List<EscolasAtendidas>> findAll() {
-	    List<EscolasAtendidas> result = escolasAtendidasRepository.findAll();
-	    return ResponseEntity.ok(result);
+		List<EscolasAtendidas> result = escolasAtendidasRepository.findAll();
+		return ResponseEntity.ok(result);
 	}
-	
-	@GetMapping(value ="/page")
+
+	@GetMapping(value = "/page")
 	public ResponseEntity<Page<EscolasAtendidas>> findAll(Pageable pageable) {
-	    Page<EscolasAtendidas> result = escolasAtendidasRepository.findAll(pageable);
-	    return ResponseEntity.ok(result);
+		Page<EscolasAtendidas> result = escolasAtendidasRepository.findAll(pageable);
+		return ResponseEntity.ok(result);
 	}
-	
-	@GetMapping(value ="/pMunicipio")
+
+	@GetMapping(value = "/pMunicipio")
 	public ResponseEntity<List<EscolasAtendidas>> findOrderByMunicipioEsfera(
 			@RequestParam(defaultValue = "") String municipio,
 			@RequestParam(defaultValue = "") String esferaGoverno,
-			Sort sort
-			) {
-	    List<EscolasAtendidas> result = escolasAtendidasRepository.searchMunicipioEsfera(municipio, esferaGoverno,(Sort.by(Sort.Direction.ASC,"municipio")));
-	    return ResponseEntity.ok(result);
+			Sort sort) {
+		List<EscolasAtendidas> result = escolasAtendidasRepository.searchMunicipioEsfera(municipio, esferaGoverno,
+				(Sort.by(Sort.Direction.ASC, "municipio")));
+		return ResponseEntity.ok(result);
 	}
-	
-	
-	
-	
+
 }

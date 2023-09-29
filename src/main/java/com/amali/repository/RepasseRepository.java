@@ -1,6 +1,5 @@
 package com.amali.repository;
 
-
 import java.util.List;
 
 import org.springframework.data.domain.Sort;
@@ -14,30 +13,24 @@ import com.amali.model.Repasse;
 @Repository
 public interface RepasseRepository extends JpaRepository<Repasse, Long> {
 
-	
-    @Query("SELECT obj FROM Repasse obj WHERE LOWER(obj.municipio) LIKE LOWER(:municipio) AND LOWER(obj.esferaGoverno) LIKE LOWER(:esferaGoverno) AND LOWER(obj.modalidadeEnsino) LIKE LOWER(:modalidadeEnsino)")
+	@Query("SELECT obj FROM Repasse obj WHERE LOWER(obj.municipio) LIKE LOWER(:municipio) AND LOWER(obj.esferaGoverno) LIKE LOWER(:esferaGoverno) AND LOWER(obj.modalidadeEnsino) LIKE LOWER(:modalidadeEnsino)")
 	List<Repasse> searchMunicipioEsferaModalidade(@Param("municipio") String municipio,
 			@Param("esferaGoverno") String esferaGoverno, @Param("modalidadeEnsino") String modalidadeEnsino, Sort sort);
-	
-    @Query("SELECT obj FROM Repasse obj WHERE LOWER(obj.municipio) LIKE LOWER(:municipio) AND LOWER(obj.esferaGoverno) LIKE LOWER(:esferaGoverno)")
+
+	@Query("SELECT obj FROM Repasse obj WHERE LOWER(obj.municipio) LIKE LOWER(:municipio) AND LOWER(obj.esferaGoverno) LIKE LOWER(:esferaGoverno)")
 	List<Repasse> searchMunicipioEsfera(@Param("municipio") String municipio,
 			@Param("esferaGoverno") String esferaGoverno, Sort sort);
-    
-    @Query("SELECT obj FROM Repasse obj WHERE LOWER(obj.municipio) LIKE LOWER(:municipio)")
+
+	@Query("SELECT obj FROM Repasse obj WHERE LOWER(obj.municipio) LIKE LOWER(:municipio)")
 	List<Repasse> searchMunicipio(@Param("municipio") String municipio, Sort sort);
 
-    
-    @Query("SELECT obj FROM Repasse obj WHERE LOWER(obj.ano) LIKE LOWER(:ano)")
+	@Query("SELECT obj FROM Repasse obj WHERE LOWER(obj.ano) LIKE LOWER(:ano)")
 	List<Repasse> searchAno(@Param("ano") String ano, Sort sort);
 
-    
-    @Query("SELECT obj FROM Repasse obj WHERE LOWER(obj.modalidadeEnsino) LIKE LOWER(:modalidadeEnsino)")
+	@Query("SELECT obj FROM Repasse obj WHERE LOWER(obj.modalidadeEnsino) LIKE LOWER(:modalidadeEnsino)")
 	List<Repasse> searchModal(@Param("modalidadeEnsino") String modalidadeEnsino, Sort sort);
-    
-    
-    @Query("SELECT obj FROM Repasse obj WHERE LOWER(obj.esferaGoverno) LIKE LOWER(:esferaGoverno)")
+
+	@Query("SELECT obj FROM Repasse obj WHERE LOWER(obj.esferaGoverno) LIKE LOWER(:esferaGoverno)")
 	List<Repasse> searchEsfera(@Param("esferaGoverno") String esferaGoverno, Sort sort);
-    
-    
-    
+
 }

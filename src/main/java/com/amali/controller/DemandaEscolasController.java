@@ -4,10 +4,7 @@ import java.util.List;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.amali.model.DemandaEscolas;
-import com.amali.model.Repasse;
 import com.amali.repository.DemandaEscolasRepository;
-import com.amali.repository.RepasseRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,32 +18,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/demandaEscolas")
 
 public class DemandaEscolasController {
-	
+
 	@Autowired
 	private DemandaEscolasRepository demandaEscolasRepository;
-	
+
 	@GetMapping
 	public ResponseEntity<List<DemandaEscolas>> findAll() {
-	    List<DemandaEscolas> result = demandaEscolasRepository.findAll();
-	    return ResponseEntity.ok(result);
+		List<DemandaEscolas> result = demandaEscolasRepository.findAll();
+		return ResponseEntity.ok(result);
 	}
-	
-	@GetMapping(value ="/page")
+
+	@GetMapping(value = "/page")
 	public ResponseEntity<Page<DemandaEscolas>> findAll(Pageable pageable) {
-	    Page<DemandaEscolas> result = demandaEscolasRepository.findAll(pageable);
-	    return ResponseEntity.ok(result);
+		Page<DemandaEscolas> result = demandaEscolasRepository.findAll(pageable);
+		return ResponseEntity.ok(result);
 	}
-	
-	/*@Autowired
-	private DemandaEscolasRepository demandaEscolasRepository;
-	
-	@GetMapping
-	public List<DemandaEscolas> listar() {
-		return demandaEscolasRepository.findAll();
-	}
-	*/
+
 	@PostMapping
-	public DemandaEscolas adicionar (@RequestBody DemandaEscolas demandaEscolas) {
+	public DemandaEscolas adicionar(@RequestBody DemandaEscolas demandaEscolas) {
 		return demandaEscolasRepository.save(demandaEscolas);
 	}
 
